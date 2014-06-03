@@ -1,13 +1,10 @@
 package cellTests;
 
 import static org.junit.Assert.*;
+import information.CellStructure;
+import information.GameGrid;
 
-import java.awt.GridBagConstraints;
 import java.util.ArrayList;
-import java.util.concurrent.ArrayBlockingQueue;
-
-import model.CellStructure;
-import model.GameGrid;
 
 import org.junit.Test;
 
@@ -34,6 +31,7 @@ public class TestCell {
 		
 		assertFalse(cell.isStateAlive());
 		assertFalse(cell.isSwitchState());
+		
 		
 		cell.setSwitchState(true);
 		assertTrue(cell.isSwitchState());

@@ -1,7 +1,5 @@
-package controller;
+package game;
 
-import model.GameGrid;
-import model.GameRules;
 
 public class Run {
 

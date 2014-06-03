@@ -1,9 +1,7 @@
-package controller;
+package game;
 
-import java.util.Random;
-
-import model.GameGrid;
-import model.GameRules;
+import information.GameGrid;
+import information.GameRules;
 
 public class Game {
 
@@ -13,7 +11,7 @@ public class Game {
 	{
 		GameGrid grid = new GameGrid(10, 10, false);
 		
-		setRandomAliveCells(grid, 50);
+		setRandomAliveCells(grid, 30);
 		
 		int stepNum = 0;
 		

@@ -1,8 +1,7 @@
 package cellTests;
 
-import static org.junit.Assert.*;
-
-import model.GameGrid;
+import static org.junit.Assert.assertEquals;
+import information.GameGrid;
 
 import org.junit.Test;
 
