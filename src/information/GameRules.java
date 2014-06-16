@@ -1,4 +1,4 @@
-package model;
+package information;
 
 /**
  * this will controll all the 4 rules for conways game of life

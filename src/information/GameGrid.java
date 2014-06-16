@@ -1,4 +1,4 @@
-package model;
+package information;
 
 import java.util.ArrayList;
 
@@ -134,6 +134,14 @@ public class GameGrid {
 		}else{
 			return '.';
 		}
+	}
+
+	public void setxSize(int xSize) {
+		this.xSize = xSize;
+	}
+
+	public void setySize(int ySize) {
+		this.ySize = ySize;
 	}
 	
 	
