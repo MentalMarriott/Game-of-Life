@@ -2,11 +2,8 @@ package game;
 
 import information.GameGrid;
 import information.GameRules;
-<<<<<<< HEAD
 
 import java.util.Scanner;
-=======
->>>>>>> c9f06ea60ee0f1627156cadd5f8bbd1a96132e00
 
 public class Game 
 {
@@ -17,7 +14,6 @@ public class Game
 
 	public Game() 
 	{
-<<<<<<< HEAD
 		boolean begin = false;
 		Scanner sc = new Scanner(System.in);
 
@@ -32,12 +28,6 @@ public class Game
 
 		setRandomAliveCells(grid, 50);
 
-=======
-		GameGrid grid = new GameGrid(10, 10, false);
-		
-		setRandomAliveCells(grid, 30);
-		
->>>>>>> c9f06ea60ee0f1627156cadd5f8bbd1a96132e00
 		int stepNum = 0;
 
 		while (true) 
