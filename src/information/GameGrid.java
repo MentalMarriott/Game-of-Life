@@ -110,7 +110,12 @@ public class GameGrid {
 	 * @return
 	 */
 	public boolean isUserChooseAliveCells() {
-		return userChooseAliveCells;
+		return this.userChooseAliveCells;
+	}
+	
+	public void setUserChooseAliveCells(boolean value)
+	{
+		this.userChooseAliveCells = value;
 	}
 
 	/**
@@ -121,6 +126,11 @@ public class GameGrid {
 		return totalGridSize;
 	}
 
+	public void setTotalGridSize(int gridSize)
+	{
+		totalGridSize = gridSize;
+	}
+	
 	/**
 	 * returns character for the display to know what to put
 	 * @param cell

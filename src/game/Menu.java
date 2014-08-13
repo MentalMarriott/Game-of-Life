@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import information.CellStructure;
 import information.GameGrid;
 
 public class Menu {
@@ -37,7 +38,7 @@ public class Menu {
 			break;
 
 		case 3:
-			setRandomCellsAlive();
+			setRandomCellsAlive(grid);
 			break;
 
 		case 4:
@@ -76,8 +77,12 @@ public class Menu {
 
 	}
 
-	private void setRandomCellsAlive() {
-		// TODO Auto-generated method stub
+	private void setRandomCellsAlive(GameGrid grid) {
+		if(grid.isUserChooseAliveCells())
+		{
+			System.out.println("\nUser has already selected alive cells, continuing" +
+					" will overwrite these, continue Y/N");
+		}
 
 	}
 
@@ -94,7 +99,7 @@ public class Menu {
 			System.out
 					.println("Enter L to list alive cells\t Enter X to cancel all\n");
 			System.out
-					.println("\nEnter C to continue adding\t Enter Y to save all\n");
+					.println("\nEnter C to continue adding\t Enter Y to save all and quit\n");
 
 			choice = sc.next().charAt(0);
 
@@ -113,7 +118,11 @@ public class Menu {
 
 			case 'Y':
 			case 'y':
+				System.out.println(grid.getTotalGridSize());
 				saveChoices(aliveCells, grid);
+				continueAdding = false;
+				setting = false;
+				grid.setUserChooseAliveCells(true);
 				break;
 
 			case 'c':
@@ -130,8 +139,8 @@ public class Menu {
 						.println("\n\nPlease enter the grid co ordinates of the cells you wish to live\n");
 				System.out.println("First number = X, Second number = Y\n");
 
-				x = sc.nextInt();
 				y = sc.nextInt();
+				x = sc.nextInt();
 				setAlive(x, y, aliveCells, grid);
 			}
 
@@ -146,16 +155,18 @@ public class Menu {
 	 * @param grid
 	 */
 	private void saveChoices(ArrayList<Integer> aliveCells, GameGrid grid) {
-		for (int i = 0; i < aliveCells.size(); i++) {
-			// calculate grid location
-			int gridAliveLocation = aliveCells.get(i)
-					+ (aliveCells.get(i++) * grid.getySize());
-			grid.getGridCellContents().get(gridAliveLocation)
-					.setSwitchState(true);
-
-			i++;
+		// loads in a blank grid of dead cells
+		for (int i = 0; i < grid.getTotalGridSize(); i++) {
+			grid.getGridCellContents().add(new CellStructure());
 		}
 
+		for (int i = 0; i < aliveCells.size(); i++) {
+			// calculate grid location
+			int gridAliveLocation = aliveCells.get(i);
+
+			grid.getGridCellContents().get(gridAliveLocation)
+					.setStateAlive(true);
+		}
 	}
 
 	/**
@@ -178,9 +189,8 @@ public class Menu {
 			System.out.println("\n\nNo cells set alive yet\n\n");
 		} else {
 			for (int i = 0; i < aliveCells.size(); i++) {
-				System.out.println("\nCell at " + aliveCells.get(i) + ","
-						+ aliveCells.get(i + 1) + " is alive\n");
-				i++;
+				System.out.println("\nCell at x = " + (aliveCells.get(i) % 5)
+						+ " y = " + (aliveCells.get(i) / 5));
 			}
 			System.out.println("\n\n");
 		}
@@ -197,8 +207,13 @@ public class Menu {
 	private void setAlive(int x, int y, ArrayList<Integer> aliveCells,
 			GameGrid grid) {
 		if (x < grid.getxSize() && y < grid.getySize()) {
-			aliveCells.add(x);
-			aliveCells.add(y);
+			int existingAliveCellLoc = (x * grid.getySize()) + y;
+			
+			if (!aliveCells.contains(existingAliveCellLoc)) {
+				aliveCells.add(x * grid.getySize() + y);
+			}else{
+				System.out.println("\nCell already alive at that position\n");
+			}
 		} else {
 			System.out.println("Invalid grid location\n\n");
 		}
@@ -219,10 +234,12 @@ public class Menu {
 		System.out.println("\nPlease enter the number of cells in each row\n");
 		x = sc.nextInt();
 
-		System.out.println("Grid size set\n");
-
 		grid.setxSize(x);
 		grid.setySize(y);
+		grid.setTotalGridSize(y * x);
+
+		System.out.println("Grid size set\n");
+		System.out.println(grid.getTotalGridSize());
 	}
 
 }

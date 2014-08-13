@@ -10,7 +10,7 @@ public class Game
 
 	GameRules gameRules = new GameRules();
 	GameGrid grid = new GameGrid(0, 0, false); //sets default grid size
-	Menu menu;
+	Menu menu = new Menu();;
 
 	public Game() 
 	{
@@ -19,8 +19,8 @@ public class Game
 
 		while (!begin) 
 		{
+			menu.welcomeScreen();
 			int choice;
-			menu = new Menu();
 
 			choice = sc.nextInt();
 			menu.choice(choice, grid);

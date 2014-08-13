@@ -1,11 +1,8 @@
 package cellTests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import information.GameGrid;
-
-
 import org.junit.Test;
-
 
 public class TestGrid {
 
