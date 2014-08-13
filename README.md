@@ -1,4 +1,4 @@
 Game-of-Life
 ============
 
-Game of life done in various languages
+Game of life done in Java
